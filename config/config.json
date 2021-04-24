@@ -1,0 +1,9 @@
+{
+  "USER": "root",
+  "PASSWORD": "Harsh123",
+  "DATABASE": "college_project",
+  "HOST": "127.0.0.1",
+  "DIALECT": "mysql",
+  "PORT": "3306",
+  "JWTSECRET": "mysecrettoken"
+}
