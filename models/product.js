@@ -48,3 +48,7 @@ const model = (sequelize) => {
 }
 
 module.exports = model;
+
+
+
+
