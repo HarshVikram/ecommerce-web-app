@@ -2,6 +2,8 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import "../App.css";
+
 const Register = () => {
   const [formData, setFormData] = useState({
   	firstName: '',

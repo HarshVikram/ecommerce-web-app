@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Home from './containers/Home';
 import Login from './containers/Login';
 import Register from './containers/Register';
+import Checkout from './containers/Checkout';
 
 import './App.css';
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/checkout" component={Checkout} />
       </Switch>
     </Router>
   );
