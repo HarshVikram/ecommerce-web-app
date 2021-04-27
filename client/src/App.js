@@ -1,20 +1,24 @@
 import React, { useEffect } from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
+import Header from './components/Header';
+
+import Home from './containers/Home';
 import Login from './containers/Login';
 import Register from './containers/Register';
 
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div className="App">
-        hello
+        <Header />
       </div>
       <Switch>
-        <Route exact path="/register" component={Landing} />
-        <Route exact path="/login" component={Landing} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Login} />
       </Switch>
     </Router>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragemnt } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -19,13 +19,21 @@ const Login = () => {
   }
 
   return (
-  	<Fragment>
-      <h1 className="large text-primary">Login</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Login your account
-      </p>
-      <form className="form" onSubmit={onSubmit}>
-        <div className="form-group">
+  	<div className="login">
+      <Link to='/'>
+        <img
+          className="login_logo"
+          src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png' 
+        />
+      </Link>
+      <div className="login_container">
+        <h1 >Login</h1>
+        <p className="lead">
+          Login your account
+        </p>
+
+        <form onSubmit={onSubmit}>
+          <h5>Email</h5>
           <input
             type="email"
             placeholder="Email Address"
@@ -34,8 +42,7 @@ const Login = () => {
             onChange={onChange}
             required
           />
-        </div>
-        <div className="form-group">
+          <h5>Password</h5>
           <input
             type="password"
             placeholder="Password"
@@ -44,13 +51,17 @@ const Login = () => {
             onChange={onChange}
             minLength="6"
           />
-        </div>
-        <input type="submit" className="btn btn-primary" value="Login" />
-      </form>
-      <p className="my-1">
-        Don't have an account? <Link to="/register">Register</Link>
-      </p>
-    </Fragment>
+          <button type='submit' className='login_button'>Login</button>
+        </form>
+        <p>
+          By signing-in you agree to the AMAZON FAKE CLONE Conditions of Use & Sale. Please
+          see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
+        </p>
+
+        <p className="my-1">Don't have an account?</p>
+        <button className='login_register_button'>Create your Amazon Account</button>
+      </div>  
+    </div>
   );
 }
 

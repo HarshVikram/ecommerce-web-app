@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragemnt } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -21,33 +21,39 @@ const Register = () => {
   }
 
   return (
-  	<Fragment>
-      <h1 className="large text-primary">Sign In</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Sign Into Your Account
-      </p>
-      <form className="form" onSubmit={onSubmit}>
-      	<div className="form-group">
+  	<div className="login">
+      <Link to='/'>
+        <img
+          className="login_logo"
+          src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png' 
+        />
+      </Link>
+      <div className="login_container">
+        <h1 >Login</h1>
+        <p className="lead">
+          Login your account
+        </p>
+
+        <form onSubmit={onSubmit}>
+          <h5>First Name</h5>
           <input
-            type="firstName"
+            type="text"
             placeholder="First Name"
             name="firstName"
             value={firstName}
             onChange={onChange}
             required
           />
-        </div>
-        <div className="form-group">
+          <h5>Last Name</h5>
           <input
-            type="lastName"
+            type="text"
             placeholder="Last Name"
             name="lastName"
             value={lastName}
             onChange={onChange}
             required
           />
-        </div>
-        <div className="form-group">
+          <h5>Email</h5>
           <input
             type="email"
             placeholder="Email Address"
@@ -56,8 +62,7 @@ const Register = () => {
             onChange={onChange}
             required
           />
-        </div>
-        <div className="form-group">
+          <h5>Password</h5>
           <input
             type="password"
             placeholder="Password"
@@ -66,13 +71,17 @@ const Register = () => {
             onChange={onChange}
             minLength="6"
           />
-        </div>
-        <input type="submit" className="btn btn-primary" value="Login" />
-      </form>
-      <p className="my-1">
-        Have an account already? <Link to="/register">Login</Link>
-      </p>
-    </Fragment>
+          <button type='submit' className='login_button'>Login</button>
+        </form>
+        <p>
+          By signing-in you agree to the AMAZON FAKE CLONE Conditions of Use & Sale. Please
+          see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
+        </p>
+
+        <p>Have an account?</p>
+        <button className='login_register_button'>Login with your Amazon Account</button>
+      </div>  
+    </div>
   );
 }
 
