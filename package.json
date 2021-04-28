@@ -28,6 +28,10 @@
     "express-validator": "^6.10.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.3.0",
     "sequelize": "^6.6.2",
     "uuid": "^8.3.2"
   },
