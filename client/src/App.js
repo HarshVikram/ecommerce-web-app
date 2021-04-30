@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
 import Header from './components/Header';
-import Alert from './components/layout/Alert';
 
 import Home from './containers/Home';
 import Login from './containers/Login';
