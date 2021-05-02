@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getProducts } from '../actions/product';
 import PropTypes from 'prop-types';
+
 
 import "../App.css";
 
-const Product = props => {
+const Product = ({ products,  getProducts }) => {
+  useEffect(() => {
+  	getProducts()
+  }, [getProducts]);
+
   return (
   	<div className="product">
 	  <div className="product_info">
@@ -31,7 +38,12 @@ const Product = props => {
 }
 
 Product.propTypes = {
-
+  getPost: PropTypes.func.isRequired,
+  products: PropTypes.object.isRequired,
 }
 
-export default Product;
+const mapStateToProps = state => ({
+  products: state.product.products
+});
+
+export default connect( mapStateToProps, { getProducts })(Product);

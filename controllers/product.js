@@ -35,9 +35,7 @@ exports.read = async (req, res) => {
   const productID = req.params.id;
   try {
     const product = await db.Product.findByPk(productID);
-    res.status(200).json({
-      product: product
-    });
+    res.status(200).json(product);
   } catch(err) {
     res.status(500).json({
       message: 'Product cannot be fetched'
@@ -48,9 +46,7 @@ exports.read = async (req, res) => {
 exports.getAll = async (req, res) => {
   try {
     const products = await db.Product.findAll();
-    res.status(200).json({
-      products: products
-    });
+    res.status(200).json(products);
   } catch (err) {
     res.status(500).json({
       message: 'Products cannot be fetched'
