@@ -20,8 +20,8 @@ store.subscribe(() => {
   let previousState = currentState;
   currentState = store.getState();
 
-  if (previousState.auth.token !== currentState.auth.token) {
-    const token = currentState.auth.token;
+  if (previousState.user.token !== currentState.user.token) {
+    const token = currentState.user.token;
     setAuthToken(token);
   }
 });

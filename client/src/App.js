@@ -18,12 +18,16 @@ if(localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
+require('react-dom');
+window.React2 = require('react');
+console.log(window.React1 === window.React2);
+
 const App = () => {
   return (
     <Provider store={store}>
       <Router>
         <div className="App">
-          <Header />
+        <Header />
         </div>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -33,7 +37,6 @@ const App = () => {
         </Switch>
       </Router>
     </Provider>
-    
   );
 }
 
