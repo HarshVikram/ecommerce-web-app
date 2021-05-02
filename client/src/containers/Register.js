@@ -1,8 +1,7 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
-import { register } from '../../actions/auth';
+import { register } from '../actions/user';
 import PropTypes from 'prop-types';
 
 import "../App.css";
@@ -22,16 +21,16 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   	setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Passwords do not match', 'danger');
+      console.log('Passwords do not match');
     } else {
-      register({ name, email, password });
+      register({ firstName, lastName, email, password });
     }
   }
 
-  if (!isAuthenticated) {
+  if(isAuthenticated) {
     return <Redirect to="/" />
   }
 
@@ -49,14 +48,14 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           Login your account
         </p>
 
-        <form onSubmit={e => onSubmit(e)}>
+        <form onSubmit={onSubmit}>
           <h5>First Name</h5>
           <input
             type="text"
             placeholder="First Name"
             name="firstName"
             value={firstName}
-            onChange={e => onChange(e)}
+            onChange={onChange}
             required
           />
           <h5>Last Name</h5>
@@ -65,7 +64,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             placeholder="Last Name"
             name="lastName"
             value={lastName}
-            onChange={e => onChange(e)}
+            onChange={onChange}
             required
           />
           <h5>Email</h5>
@@ -74,7 +73,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             placeholder="Email Address"
             name="email"
             value={email}
-            onChange={e => onChange(e)}
+            onChange={onChange}
             required
           />
           <h5>Password</h5>
@@ -83,7 +82,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={e => onChange(e)}
+            onChange={onChange}
             minLength="6"
           />
           <h5>Confirm Password</h5>
@@ -92,7 +91,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             placeholder="Confirm Password"
             name="password2"
             value={password2}
-            onChange={e => onChange(e)}
+            onChange={onChange}
             minLength="6"
           />
           <button type='submit' className='login_button'>Login</button>
@@ -110,13 +109,12 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 }
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool
 }
 
 const mapStateToProps = state => ({
-
+  isAuthenticated: state.user.isAuthenticated
 });
 
-export default connect(mapStateToProps, { setAlert, register })(Register);
+export default connect(mapStateToProps, { register })(Register);

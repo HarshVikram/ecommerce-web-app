@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CheckoutProduct from '../components/CheckoutProduct';
-import Subtotal from '../components/Subtotal';
+
 
 import "../App.css";
 
@@ -26,7 +26,7 @@ const Checkout = props => {
       </div>
 
       <div className="checkout_right">
-      	<Subtotal />
+      	59.97
       </div>
 	</div>
   );

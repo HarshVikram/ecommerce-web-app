@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CurrencyFormat from "react-currency-format";
 
 import "../App.css";
 
