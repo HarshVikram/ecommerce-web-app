@@ -22,11 +22,38 @@ exports.delete = async (req, res) => {
   try {
   	const product = await db.Product.destroy({ where: { id: productID } });
   	res.status(201).json({
-      message: 'Product deleted successfully.'
+      message: 'Product deleted successfully'
     });
   } catch(err) {
   	res.status(500).json({
-      message: 'Product cannot be deleted if there are products under it.'
+      message: 'Product cannot be deleted if there are products under it'
+    });
+  }
+}
+
+exports.read = async (req, res) => {
+  const productID = req.params.id;
+  try {
+    const product = await db.Product.findByPk(productID);
+    res.status(200).json({
+      product: product
+    });
+  } catch(err) {
+    res.status(500).json({
+      message: 'Product cannot be fetched'
+    });
+  }
+}
+
+exports.getAll = async (req, res) => {
+  try {
+    const products = await db.Product.findAll();
+    res.status(200).json({
+      products: products
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: 'Products cannot be fetched'
     });
   }
 }
