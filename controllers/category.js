@@ -28,3 +28,30 @@ exports.delete = async (req, res) => {
     });
   }
 }
+
+exports.read = async (req, res) => {
+  const categoryID = req.params.id;
+  try {
+    const category = await db.Category.findByPk(categoryID);
+    res.status(200).json({
+      category: category
+    });
+  } catch(err) {
+    res.status(500).json({
+      message: 'Categories cannot be fetched'
+    });
+  }
+}
+
+exports.getAll = async (req, res) => {
+  try {
+    const categories = await db.Category.findAll();
+    res.status(200).json({
+      categories: categories
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: 'Categories cannot be fetched'
+    });
+  }
+}
