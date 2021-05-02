@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Product from '../components/Product';
+import { getProducts } from '../actions/product';
 
 import "../App.css";
 
-const Home = props => {
+const Home = ({ user, product, getProducts }) => {
+  useEffect(() => {
+    getProducts()
+  }, [getProducts]);
+
   return (
 	<div className="home">
 	  <img 
@@ -14,25 +21,26 @@ const Home = props => {
       />
 
       <div className="home_row">
-      	<Product />
-      	<Product />
+      	{product.products.map((product) => (
+          <Product 
+            key={product.id}
+            product={product}
+          />
+        ))}
       </div>
-
-      <div className="home_row">
-      	<Product />
-      	<Product />
-      	<Product />
-      </div>
-
-      <div className="home_row">
-      	<Product />
-      </div>	
 	</div>
   );
 }
 
 Home.propTypes = {
-
+  getProducts: PropTypes.func.isRequired,
+  product: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  user: state.user,
+  product: state.product
+})
+
+export default connect(mapStateToProps, { getProducts })(Home);
