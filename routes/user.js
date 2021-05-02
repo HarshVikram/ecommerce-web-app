@@ -9,7 +9,7 @@ const userValidator = require('../validators/auth');
 
 const isValid = require('../middlewares/is-valid');
 
-router.post('/', userValidator.signupValidator, isValid, userController.register);
+router.post('/register', userValidator.signupValidator, isValid, userController.register);
 router.post('/login', userController.login);
 
 module.exports = router;

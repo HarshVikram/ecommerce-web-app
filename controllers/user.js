@@ -13,7 +13,7 @@ exports.register = async (req, res) => {
   	})
   	if (user) {
   	  return res
-  	    .status(401)
+  	    .status(400)
   	    .json({ errors: [{ msg: 'A user with this email already exists.' }] });
   	}
   	const hashedPassWord = await bcrypt.hash(password, 12);
@@ -28,11 +28,23 @@ exports.register = async (req, res) => {
         message: 'Signup successful',
         user: userData
       });
+
+      const payload = { user: { id: user.id } };
+
+      jwt.sign(
+        payload,
+        config.JWTSECRET,
+        { expiresIn: '24h' },
+        (err, token) => {
+          if (err) 
+            throw err;
+          else 
+            res.json({ token });
+        }
+      );
   } catch (err) {
-  	console.error(err.message);
-    if (!err.statusCode) {
-      err.statusCode = 500;
-    }
+  	console.error(err.message );
+    res.status(500).send('Server error');
   }
 }
 
