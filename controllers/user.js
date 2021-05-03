@@ -87,3 +87,13 @@ exports.login = async (req, res) => {
     }
   }
 }
+
+exports.read = async (req, res) => {
+  try {
+    const user = await db.User.findByPk(req.user.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+}
