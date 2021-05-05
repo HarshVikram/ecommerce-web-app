@@ -12,7 +12,7 @@ const isAuth = require('../middlewares/is-auth');
 
 router.post('/register', userValidator.signupValidator, isValid, userController.register);
 router.post('/login', userController.login);
-router.post('/', isAuth, userController.read);
+router.get('/', isAuth, userController.loadUser);
 
 
 module.exports = router;

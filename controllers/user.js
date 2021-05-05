@@ -88,9 +88,9 @@ exports.login = async (req, res) => {
   }
 }
 
-exports.read = async (req, res) => {
+exports.loadUser = async (req, res) => {
   try {
-    const user = await db.User.findByPk(req.user.id).select('-password');
+    const user = await db.User.findOne({ where: { id: req.user.id } })
     res.json(user);
   } catch (err) {
     console.error(err.message);
