@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Product from '../components/Product';
 import { getProducts } from '../actions/product';
+import { loadUser } from '../actions/user';
 
 import "../App.css";
 
-const Home = ({ user, product, getProducts }) => {
+const Home = ({ user, product, getProducts, loadUser }) => {
   useEffect(() => {
-    getProducts()
+    getProducts();
   }, [getProducts]);
 
   return (
@@ -43,4 +44,4 @@ const mapStateToProps = state => ({
   product: state.product
 })
 
-export default connect(mapStateToProps, { getProducts })(Home);
+export default connect(mapStateToProps, { getProducts, loadUser })(Home);
