@@ -10,19 +10,21 @@ import Checkout from './containers/Checkout';
 
 import { Provider } from 'react-redux';
 import store from './store';
+import { loadUser } from './actions/user';
 import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
 
-if(localStorage.token) {
-  setAuthToken(localStorage.token);
-}
-
-require('react-dom');
-window.React2 = require('react');
-console.log(window.React1 === window.React2);
+    if(localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
 
 const App = () => {
+
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>

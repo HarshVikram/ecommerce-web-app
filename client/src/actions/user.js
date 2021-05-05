@@ -5,9 +5,28 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   USER_LOADED, 
-  AUTH_ERROR,
+  AUTH_ERROR
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
+
+export const loadUser = () => async dispatch => {
+  if(localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+  try {
+    const res = await axios.get('/api/user');
+
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data
+    });
+
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR
+    });
+  }
+}
 
 export const register = (formData) => async dispatch => {
   try {
@@ -17,6 +36,7 @@ export const register = (formData) => async dispatch => {
   	  type: REGISTER_SUCCESS,
   	  payload: res.data
   	});
+    dispatch(loadUser());
   } catch (err) {
   	const error = err.response.data.error;
 
@@ -38,6 +58,7 @@ export const login = (formData) => async dispatch => {
       type: LOGIN_SUCCESS,
       payload: res.data
     })
+    dispatch(loadUser());
   } catch (err) {
     const error = err.response.data.error;
 
@@ -47,25 +68,6 @@ export const login = (formData) => async dispatch => {
     
     dispatch({
       type: LOGIN_FAIL
-    });
-  }
-}
-
-export const loadUser = () => async dispatch => {
-  if(localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
-  try {
-    const res = await axios.get('/api/user');
-
-    dispatch({
-      type: USER_LOADED,
-      payload: res.data
-    });
-
-  } catch (err) {
-    dispatch({
-      type: AUTH_ERROR
     });
   }
 }
