@@ -27,15 +27,8 @@ function userReducer(state = initialState, action) {
         user: payload
       }
 
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        ...payload,
-        isAuthenticated: true,
-        loading: false
-      };
-
   	case REGISTER_SUCCESS: 
+    case LOGIN_SUCCESS:
   	  return {
   	  	...state,
   	  	...payload,
@@ -43,17 +36,10 @@ function userReducer(state = initialState, action) {
   	  	loading: false
   	  };
 
-    case AUTH_ERROR:
-      return {
-        ...state,
-        isAuthenticated: false,
-        loading: false,
-        user: null,
-        token: null
-      };
-
     case LOGIN_FAIL:
-  	case REGISTER_FAIL: 
+  	case REGISTER_FAIL:
+    case AUTH_ERROR:
+    case LOGOUT: 
   	  localStorage.removeItem('token');
       return {
   	  	...state,

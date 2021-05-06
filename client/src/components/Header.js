@@ -2,13 +2,14 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logout } from '../actions/user';
 
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
 import '../App.css';
 
-const Header = ({ user: { isAuthenticated, loading, user } }) => {
+const Header = ({ user: { isAuthenticated, loading, user }, logout }) => {
 
   const guestLinks = (
     <Fragment>
@@ -37,7 +38,7 @@ const Header = ({ user: { isAuthenticated, loading, user } }) => {
     <Fragment>
       <Link>
         <div className="header_option">
-          <span className="header_option_1">Hello, {user.firstName}</span>
+          <span className="header_option_1">Hello</span>
           <span className="header_option_2">Account & Lists</span>
         </div>
       </Link>
@@ -53,7 +54,7 @@ const Header = ({ user: { isAuthenticated, loading, user } }) => {
           <span className="header_option_2">Prime</span>
         </div>
       </Link>
-      <Link>
+      <Link onClick={logout}>
         <div className="header_option">
           <span className="header_option_1">Thank You</span>
           <span className="header_option_2">Log Out</span>
@@ -98,11 +99,12 @@ const Header = ({ user: { isAuthenticated, loading, user } }) => {
 }
 
 Header.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired 
 }
 
 const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, {})(Header);
+export default connect(mapStateToProps, { logout })(Header);
