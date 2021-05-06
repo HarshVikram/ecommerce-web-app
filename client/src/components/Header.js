@@ -13,19 +13,19 @@ const Header = ({ user: { isAuthenticated, loading, user }, logout }) => {
 
   const guestLinks = (
     <Fragment>
-      <Link>
+      <Link to="/login">
         <div className="header_option">
           <span className="header_option_1">Hello Guest</span>
           <span className="header_option_2">Sign In</span>
         </div>
       </Link>
-      <Link>
+      <Link to="/login">
         <div className="header_option">
           <span className="header_option_1">Returns</span>
           <span className="header_option_2">& Orders</span>
         </div>
       </Link>
-      <Link>
+      <Link to="https://www.primevideo.com/">
         <div className="header_option">
           <span className="header_option_1">Your</span>
           <span className="header_option_2">Prime</span>
@@ -36,19 +36,19 @@ const Header = ({ user: { isAuthenticated, loading, user }, logout }) => {
 
   const authLinks = (
     <Fragment>
-      <Link>
+      <Link to="/me">
         <div className="header_option">
           <span className="header_option_1">Hello</span>
           <span className="header_option_2">Account & Lists</span>
         </div>
       </Link>
-      <Link>
+      <Link to="/history">
         <div className="header_option">
           <span className="header_option_1">Returns</span>
           <span className="header_option_2">& Orders</span>
         </div>
       </Link>
-      <Link>
+      <Link to="https://www.primevideo.com/">
         <div className="header_option">
           <span className="header_option_1">Your</span>
           <span className="header_option_2">Prime</span>
